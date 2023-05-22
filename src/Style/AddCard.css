@@ -1,0 +1,35 @@
+.addCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#add-card-form {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#add-card-form input,
+#add-card-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.expiration-date {
+  display: flex;
+  align-items: center;
+}
+
+.expiration-date input {
+  width: 50px;
+}
+
+.expiration-date span {
+  margin: 0 5px;
+}

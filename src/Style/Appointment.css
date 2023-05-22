@@ -1,0 +1,43 @@
+.appointment {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.appointment h1 {
+  margin-top: 0;
+}
+
+.appointment-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.appointment-list li {
+  margin-bottom: 10px;
+}
+
+.appointment-list label {
+  display: block;
+}
+
+.payment-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.payment-button:hover {
+  background-color: #45a049;
+}
+
+.payment-button:active {
+  background-color: #3e8e41;
+}

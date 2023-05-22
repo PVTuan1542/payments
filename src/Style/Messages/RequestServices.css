@@ -1,0 +1,110 @@
+.info-list {
+  margin-top: 20px;
+}
+
+.info-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.info-list li {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.info-item {
+  display: flex;
+}
+
+.info-header {
+  flex: 1;
+}
+
+.info-header h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.info-header p {
+  font-size: 14px;
+  color: #888;
+}
+
+.info-details {
+  flex: 1;
+}
+
+.info-details p {
+  margin-bottom: 5px;
+}
+
+.info-details strong {
+  font-weight: bold;
+}
+
+.info-image {
+  flex: 1;
+  text-align: center;
+}
+
+.info-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.heading-with-line {
+  position: relative;
+}
+
+.heading-with-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+}
+
+.book-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.book-button:hover .accept-button:hover {
+  background-color: #45a049;
+}
+
+.accept-button,
+.counter-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accept-button:hover,
+.counter-button:hover {
+  background-color: #45a049;
+}
+
+.counter-button {
+  margin-left: 5px;
+}
+
+.book-button:active,
+.accept-button:active,
+.counter-button:active {
+  background-color: #0d270f;
+}

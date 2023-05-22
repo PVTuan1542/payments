@@ -1,0 +1,32 @@
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 300px;
+  margin: 10px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.card-label {
+  font-weight: bold;
+}
+
+.card-value {
+  color: #333;
+}
+
+.card-list-payments {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Các CSS khác cho CardComponent */

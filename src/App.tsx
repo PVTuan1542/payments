@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import AppointmentDeposit from "./Components/Appointments/AppointmentDeposit";
+import Appointments from "./Components/Appointments/Appointments";
+import Messages from "./Components/Messages/Messages";
+import RequestServices from "./Components/Messages/RequestServices";
+import AddCard from "./Components/Payments/AddCard";
+import Payment from "./Components/Payments/Payment";
+import PaymentMethods from "./Components/Payments/PaymentMethods";
+import Payments from "./Components/Payments/Payments";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/addCard" element={<AddCard />}></Route>
+        <Route path="/payment" element={<Payment />}></Route>
+        <Route path="/appointmentDeposit" element={<AppointmentDeposit />}></Route>
+        <Route path="/" element={<AppointmentDeposit />}></Route>
+        <Route path="/cardList" element={<PaymentMethods />}></Route>
+        <Route path="/appointments" element={<Appointments />}></Route>
+        <Route path="/payments" element={<Payments />}></Route>
+        <Route path="/requestServices" element={<RequestServices />}></Route>
+        <Route path="/messages" element={<Messages />}></Route>
+      </Routes>
     </div>
   );
 }
