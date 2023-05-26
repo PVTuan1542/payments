@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import AppointmentDeposit from "./Components/Appointments/AppointmentDeposit";
 import Appointments from "./Components/Appointments/Appointments";
 import Messages from "./Components/Messages/Messages";
-import RequestServices from "./Components/Messages/RequestServices";
 import AddCard from "./Components/Payments/AddCard";
 import Payment from "./Components/Payments/Payment";
 import PaymentMethods from "./Components/Payments/PaymentMethods";
@@ -19,7 +18,6 @@ function App() {
         <Route path="/cardList" element={<PaymentMethods />}></Route>
         <Route path="/appointments" element={<Appointments />}></Route>
         <Route path="/payments" element={<Payments />}></Route>
-        <Route path="/requestServices" element={<RequestServices />}></Route>
         <Route path="/messages" element={<Messages />}></Route>
       </Routes>
     </div>

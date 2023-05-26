@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { API_URL, tokenCustomer } from "../../config";
 import "../../Style/AppointmentDeposit.css";
@@ -12,12 +12,13 @@ const AppointmentDeposit = () => {
   const [dataPayment, setDataPayment] = useState<any>();
   const location = useLocation();
   const appointmentId = location.state;
+  const getAppointmentDeposit = useRef(() => {});
 
   useEffect(() => {
-    getAppointmentDeposit();
+    getAppointmentDeposit.current();
   }, []);
 
-  async function getAppointmentDeposit() {
+  getAppointmentDeposit.current = async () => {
     try {
       const result = await axios.get(
         `${API_URL}/appointments/${appointmentId}`,
@@ -45,7 +46,7 @@ const AppointmentDeposit = () => {
     } catch (error) {
       return Promise.reject(error);
     }
-  }
+  };  
 
   return (
     <div className="appointment">

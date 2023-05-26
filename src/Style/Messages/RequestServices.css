@@ -50,7 +50,6 @@
 
 .info-image img {
   max-width: 100%;
-  height: auto;
 }
 
 .heading-with-line {
@@ -107,4 +106,12 @@
 .accept-button:active,
 .counter-button:active {
   background-color: #0d270f;
+}
+
+.image-thumbnail {
+  width: 200px; 
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL, tokenCustomer } from "../../config";
+import { IModifyRequestServiceService } from "./requestService.type";
 
 export async function getRequestServices(status?: string) {
   try {
@@ -34,6 +35,30 @@ export async function acceptRequestService(requestServiceId?: string) {
     );
 
     return;
+  } catch (error: any) {
+    if (error?.response) {
+      alert(error?.response?.data.error);
+    }
+    return;
+  }
+}
+
+export async function modifyRequestService({
+  data,
+}: IModifyRequestServiceService) {
+  try {
+    const { requestServiceId, ...newData } = data;
+    await axios.put(
+      `${API_URL}/requestServices/${data.requestServiceId}`,
+      { ...newData },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenCustomer}`,
+        },
+      }
+    );
+
+    return true;
   } catch (error: any) {
     if (error?.response) {
       alert(error?.response?.data.error);

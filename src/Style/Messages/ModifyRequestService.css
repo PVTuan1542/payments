@@ -1,0 +1,129 @@
+/* CSS cho modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CSS cho nội dung modal */
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* CSS cho nút close */
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: #888;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* CSS cho nút open modal */
+.open-modal-button {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.open-modal-button:hover {
+  background-color: #e8e8e8;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-content label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.modal-content input[type="number"],
+.modal-content select,
+.modal-content textarea,
+.modal-content input[type="date"],
+.modal-content input[type="time"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.modal-content .date-time-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-content .image-preview {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.modal-content .image-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-content .image-input {
+  margin-bottom: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-content input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  -moz-appearance: textfield; /* ẩn mũi tên điều chỉnh giá trị */
+}
+
+.modal-content input[type="number"]::-webkit-inner-spin-button,
+.modal-content input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* ẩn mũi tên điều chỉnh giá trị */
+  margin: 0; /* ẩn mũi tên điều chỉnh giá trị */
+}

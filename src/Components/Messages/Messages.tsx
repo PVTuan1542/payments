@@ -34,7 +34,7 @@ const Messages = () => {
         <div className="request-service-accepted">
           <h1 className="heading-with-line">Accepted offers</h1>
           <RequestServices
-            key={`requestService-${requestServiceAccepted?.requestServiceId}`}
+            key={`requestServiceAccepted-${requestServiceAccepted?.requestServiceId}`}
             {...requestServiceAccepted}
           />
         </div>
@@ -43,7 +43,7 @@ const Messages = () => {
         <div className="request-service-replied">
           <h1 className="heading-with-line">Replies</h1>
           <RequestServices
-            key={`requestService-${requestServiceReplied?.requestServiceId}`}
+            key={`requestServiceReplied-${requestServiceReplied?.requestServiceId}`}
             {...requestServiceReplied}
           />
         </div>
@@ -52,7 +52,7 @@ const Messages = () => {
         <div className="request-service-pending">
           <h1 className="heading-with-line">Pending requests</h1>
           <RequestServices
-            key={`requestService-${requestServicePending?.requestServiceId}`}
+            key={`requestServicePending-${requestServicePending?.requestServiceId}`}
             {...requestServicePending}
           />
         </div>
