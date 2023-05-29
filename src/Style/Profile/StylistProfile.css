@@ -1,0 +1,127 @@
+/* Profile.css */
+.profile-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background-color: #f8f8f8;
+}
+
+.profile-header {
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-name-image {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profile-location {
+  font-size: 16px;
+  color: #888;
+}
+
+.profile-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.rating-stars {
+  /* Add styles for the rating stars */
+}
+
+.rating-value {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px 5px;
+}
+
+.rating-count {
+  font-size: 14px;
+  color: #888;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.about-text {
+  margin-bottom: 20px;
+}
+
+.service-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.service-list li {
+  margin-bottom: 5px;
+}
+
+.opening-hours-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.opening-hours-list li {
+  margin-bottom: 5px;
+}
+
+.request-service-button {
+  background-color: #595451c3;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.request-service-button:hover {
+  background-color: #e4989d;
+}
+
+.heart-button,
+.share-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.heart-button {
+  color: #595451c3;
+  font-size: 24px;
+}
+
+.share-button {
+  color: #595451c3;
+  font-size: 24px;
+}
+
+.heart-button:hover,
+.share-button:hover {
+  color: #e4989d;
+}

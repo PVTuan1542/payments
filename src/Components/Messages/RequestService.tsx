@@ -11,11 +11,16 @@ const RequestService = (props: any) => {
   const navigate = useNavigate();
   const [isModify, setIsModify] = useState(false);
   const [isCounter, setIsCounter] = useState(false);
+  const [counter, setCounter] = useState(props?.offer);
   const [fromDate, setFromDate] = useState<any>(props?.fromDate);
   const [toDate, setToDate] = useState<any>(props?.toDate);
   const [tempBudget, setTempBudget] = useState(props.budget);
-  const [currentImages, setCurrentImages] = useState<string[]>(props?.currentImages);
-  const [sampleImages, setSampleImages] = useState<string[]>(props?.sampleImages);
+  const [currentImages, setCurrentImages] = useState<string[]>(
+    props?.currentImages
+  );
+  const [sampleImages, setSampleImages] = useState<string[]>(
+    props?.sampleImages
+  );
 
   function openModify() {
     setIsModify(true);
@@ -25,12 +30,32 @@ const RequestService = (props: any) => {
     setIsModify(false);
   }
 
+  function openCounter() {
+    setIsCounter(true);
+  }
+
+  function closeCounter() {
+    setIsCounter(false);
+  }
+
   function handleModify(data: any) {
     setTempBudget(data.budget);
     setFromDate(data.fromDate.toISOString());
     setToDate(data.toDate.toISOString());
     setCurrentImages(data.currentImages);
     setSampleImages(data.sampleImages);
+  }
+
+  async function handleCreateRequestServiceAppointment() {
+    const appointment = await createRequestServiceAppointment(
+      props.requestServiceId,
+      props.fromDate,
+      props.toDate
+    );
+
+    navigate("/appointmentDeposit", {
+      state: appointment?.appointmentId,
+    });
   }
 
   return (
@@ -49,14 +74,7 @@ const RequestService = (props: any) => {
                 <b>Congratulations!</b> Your offer is accepted
               </p>
               <button
-                onClick={async () => {
-                  const appointment = await createRequestServiceAppointment(
-                    props.requestServiceId
-                  );
-                  navigate("/appointmentDeposit", {
-                    state: appointment?.appointmentId,
-                  });
-                }}
+                onClick={handleCreateRequestServiceAppointment}
                 className="book-button"
               >
                 Book your appointment
@@ -66,7 +84,7 @@ const RequestService = (props: any) => {
           {props.status === "REPLIED" && (
             <div className="additional-info info-details">
               <p>
-                <strong>Offer:</strong> ${props?.offer}
+                <strong>Offer:</strong> ${counter}
               </p>
               <p>
                 <strong>Offer by:</strong> {props?.madeOfferBy?.firstName}{" "}
@@ -80,7 +98,14 @@ const RequestService = (props: any) => {
               >
                 Accept
               </button>
-              <button className="counter-button">Counter</button>
+              <button
+                onClick={() => {
+                  openCounter();
+                }}
+                className="counter-button"
+              >
+                Counter
+              </button>
             </div>
           )}
           <div className="info-details">
@@ -101,6 +126,11 @@ const RequestService = (props: any) => {
             <p>
               <strong>To Date:</strong> {convertDate(toDate)}
             </p>
+            {props?.offer && (
+              <p>
+                <strong>Offer:</strong> ${props?.offer}
+              </p>
+            )}
             {props.status === "PENDING" && (
               <button
                 onClick={() => {
@@ -150,7 +180,13 @@ const RequestService = (props: any) => {
         />
       )}
       {isCounter && (
-        <Counter/>
+        <Counter
+          key={"counter-key"}
+          isCounter={isCounter}
+          onClose={closeCounter}
+          setCounter={setCounter}
+          {...props}
+        />
       )}
     </div>
   );

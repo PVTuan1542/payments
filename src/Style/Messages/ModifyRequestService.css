@@ -70,7 +70,7 @@
   display: block;
 }
 
-.modal-content input[type="number"],
+.modal-content input[type="text"],
 .modal-content select,
 .modal-content textarea,
 .modal-content input[type="date"],

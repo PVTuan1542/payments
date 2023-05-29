@@ -3,7 +3,7 @@ import { uploadImageToS3 } from "../../../Services/s3/s3.service";
 import "../../../Style/Messages/Image.css";
 
 const CurrentImages = (props: any) => {
-  const [images, setImageLoads] = useState<string[]>(props?.images);
+  const [images, setImageLoads] = useState<string[]>(props?.images ?? []);
 
   const handleFileChange = async (event: any) => {
     const reader = new FileReader();

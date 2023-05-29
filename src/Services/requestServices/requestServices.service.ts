@@ -1,6 +1,10 @@
 import axios from "axios";
 import { API_URL, tokenCustomer } from "../../config";
-import { IModifyRequestServiceService } from "./requestService.type";
+import {
+  ICreateRequestServiceService,
+  IMakeOfferRequestServiceService,
+  IModifyRequestServiceService,
+} from "./requestService.type";
 
 export async function getRequestServices(status?: string) {
   try {
@@ -51,6 +55,50 @@ export async function modifyRequestService({
     await axios.put(
       `${API_URL}/requestServices/${data.requestServiceId}`,
       { ...newData },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenCustomer}`,
+        },
+      }
+    );
+
+    return true;
+  } catch (error: any) {
+    if (error?.response) {
+      alert(error?.response?.data.error);
+    }
+    return;
+  }
+}
+
+export async function makeOffer({ data }: IMakeOfferRequestServiceService) {
+  try {
+    await axios.put(
+      `${API_URL}/requestServices/${data.requestServiceId}/makeOffer`,
+      { offer: data.offer },
+      {
+        headers: {
+          Authorization: `Bearer ${tokenCustomer}`,
+        },
+      }
+    );
+
+    return true;
+  } catch (error: any) {
+    if (error?.response) {
+      alert(error?.response?.data.error);
+    }
+    return;
+  }
+}
+
+export async function createRequestService({
+  data,
+}: ICreateRequestServiceService) {
+  try {
+    await axios.post(
+      `${API_URL}/requestServices`,
+      { ...data },
       {
         headers: {
           Authorization: `Bearer ${tokenCustomer}`,

@@ -1,60 +1,72 @@
-import { useEffect, useState } from "react";
-import { modifyRequestService } from "../../Services/requestServices/requestServices.service";
-import { getStylistService } from "../../Services/services/services.service";
-import "../../Style/Messages/ModifyRequestService.css";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createRequestService } from "../../../Services/requestServices/requestServices.service";
+import "../../../Style/Messages/ModifyRequestService.css";
 import {
   combinedDateTime,
-  formattedTime,
-  getDate,
   uppercaseServiceName,
-} from "../../Utils/Calculate";
-import CurrentImages from "./Modify/CurrentImages";
+} from "../../../Utils/Calculate";
+import { StylistContext } from "../../StylistProfile/StylistProvider";
+import CurrentImages from "../Modify/CurrentImages";
 
-function ModifyRequestService({ isModify, onClose, onModify, ...props }: any) {
-  const [services, setServices] = useState<any[]>([]);
-  const [fromDate, setFromDate] = useState<any>(formattedTime(props.fromDate));
-  const [toDate, setToDate] = useState<any>(formattedTime(props.toDate));
-  const [date, setDate] = useState<any>(getDate(props.fromDate));
-  const [tempBudget, setTempBudget] = useState(props.budget);
+interface IRequestService {
+  serviceId: string;
+  stylistId: string;
+  budget: number;
+  fromDate: Date;
+  toDate: Date;
+  currentImages: string[];
+  sampleImages: string[];
+}
+
+function CreateRequestService({ onClose, stylistId }: any) {
+  const stylist: any = useContext(StylistContext);
+  const [serviceId, setServiceId] = useState<any>("");
+  const [fromDate, setFromDate] = useState<any>();
+  const [toDate, setToDate] = useState<any>();
+  const [date, setDate] = useState<any>();
+  const [budget, setBudget] = useState<any>();
   const [minDate, setMinDate] = useState("");
-  const [currentImages, setCurrentImages] = useState<string[]>(props?.currentImages);
-  const [sampleImages, setSampleImages] = useState<string[]>(props?.sampleImages);
+  const [currentImages, setCurrentImages] = useState<string[]>([]);
+  const [sampleImages, setSampleImages] = useState<string[]>([]);
   const [isDisabled, setIsDisabled] = useState(false);
+  const navigate = useNavigate();
+
+  // const [requestService, setRequestService] = useState<IRequestService>({
+  //   serviceId: "",
+  //   stylistId: "",
+  //   budget: 0,
+  //   fromDate: new Date(),
+  //   toDate: new Date(),
+  //   currentImages: [],
+  //   sampleImages: [],
+  // });
 
   useEffect(() => {
-    getServices();
-
     const currentDate = new Date().toISOString().split("T")[0];
     setMinDate(currentDate);
   }, []);
 
-  async function getServices() {
-    const response = await getStylistService();
-
-    setServices(response.list);
+  function handleInputChange(e: any) {
+    setBudget(e.target.value);
   }
 
-  async function handleUpdateRequestService() {
-    const data = {
-      requestServiceId: props.requestServiceId,
+  async function handleCreateRequestService() {
+    const data: IRequestService = {
+      serviceId,
+      stylistId: stylist?.stylistId,
       fromDate: combinedDateTime(date, fromDate),
       toDate: combinedDateTime(date, toDate),
-      budget: Number(tempBudget),
+      budget: Number(budget),
       currentImages,
-      sampleImages
+      sampleImages,
     };
 
-    const isUpdated = await modifyRequestService({
+    await createRequestService({
       data,
     });
 
-    isUpdated && onModify(data);
-
-    return isUpdated;
-  }
-
-  function handleInputChange(e: any) {
-    setTempBudget(e.target.value);
+    return;
   }
 
   return (
@@ -65,8 +77,11 @@ function ModifyRequestService({ isModify, onClose, onModify, ...props }: any) {
           id="lookingFor"
           name="lookingFor"
           placeholder="Choose a service"
+          onChange={(e) => {
+            setServiceId(e.target.value);
+          }}
         >
-          {services.map((service) => {
+          {stylist?.services?.map((service: any) => {
             return (
               <option
                 value={service?.serviceId}
@@ -83,7 +98,7 @@ function ModifyRequestService({ isModify, onClose, onModify, ...props }: any) {
           id="budget"
           name="budget"
           placeholder="$ 0.00"
-          value={tempBudget}
+          value={budget}
           onChange={handleInputChange}
         />
         <label htmlFor="needDate">I need it by</label>
@@ -118,22 +133,30 @@ function ModifyRequestService({ isModify, onClose, onModify, ...props }: any) {
           />
         </div>
         <label htmlFor="currentLook">Current look</label>
-        <CurrentImages images={currentImages} setImages={setCurrentImages} setIsDisabled={setIsDisabled}/>
+        <CurrentImages
+          images={currentImages}
+          setImages={setCurrentImages}
+          setIsDisabled={setIsDisabled}
+        />
         <label htmlFor="expectedLook">Expected look</label>
-        <CurrentImages images={sampleImages} setImages={setSampleImages} setIsDisabled={setIsDisabled}/>
+        <CurrentImages
+          images={sampleImages}
+          setImages={setSampleImages}
+          setIsDisabled={setIsDisabled}
+        />
         <div className="button-container">
           <button onClick={onClose} className="cancel-button">
             Cancel
           </button>
           <button
             onClick={() => {
-              handleUpdateRequestService();
-              onClose();
+              handleCreateRequestService();
+              navigate("/messages");
             }}
             className="resend-button"
-            disabled = {isDisabled}
+            disabled={isDisabled}
           >
-            Resend
+            Request
           </button>
         </div>
       </div>
@@ -141,4 +164,4 @@ function ModifyRequestService({ isModify, onClose, onModify, ...props }: any) {
   );
 }
 
-export default ModifyRequestService;
+export default CreateRequestService;
